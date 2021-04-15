@@ -1,9 +1,9 @@
 import "./App.css";
 import { useState } from "react";
 
-export function replaceCamelCase(colorName) {
-  return colorName.replace(/\B([A-Z])\B/g, " $1");
-}
+// export function replaceCamelCase(colorName) {
+//   return colorName.replace(/\B([A-Z])\B/g, " $1");
+// }
 
 // function App() {
 //   const [btnColor, setColor] = useState("red");
@@ -38,6 +38,12 @@ export function replaceCamelCase(colorName) {
 //   );
 // }
 
-function App() {}
+function App() {
+  return (
+    <div>
+      <h1>Hello</h1>
+    </div>
+  );
+}
 
 export default App;

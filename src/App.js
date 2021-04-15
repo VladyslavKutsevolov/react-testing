@@ -1,4 +1,5 @@
 import "./App.css";
+import SummaryForm from "./pages/summary/SummaryForm";
 import { useState } from "react";
 
 // export function replaceCamelCase(colorName) {
@@ -41,7 +42,7 @@ import { useState } from "react";
 function App() {
   return (
     <div>
-      <h1>Hello</h1>
+      <SummaryForm />
     </div>
   );
 }

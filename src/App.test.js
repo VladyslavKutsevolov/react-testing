@@ -1,10 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { replaceCamelCase } from "./App";
-import App from "./App";
+// import { fireEvent, render, screen } from "@testing-library/react";
+// import App from "./App";
+//
+// beforeEach(() => {
+//   render(<App />);
+// });
 
-beforeEach(() => {
-  render(<App />);
-});
+it("should ", function () {});
 
 // it("should have correct initial color", function () {
 //   const btn = screen.getByRole("button", { name: /change to blue/i });

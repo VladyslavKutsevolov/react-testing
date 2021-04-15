@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { replaceCamelCase } from "./App";
 import App from "./App";
 
 beforeEach(() => {
@@ -51,4 +52,18 @@ it("should change btn color to grey when disabled", function () {
 
   fireEvent.click(checkbox);
   expect(btn).toHaveStyle({ backgroundColor: "red" });
+});
+
+describe("spaces before cames case", () => {
+  it("should works for no inner capital letters", function () {
+    expect(replaceCamelCase("Red")).toBe("Red");
+  });
+
+  it("should works for one inner capital letters", function () {
+    expect(replaceCamelCase("MidnightBlue")).toBe("Midnight Blue");
+  });
+
+  it("should works for multiple inner capital letters", function () {
+    expect(replaceCamelCase("MediumVioletRed")).toBe("Medium Violet Red");
+  });
 });

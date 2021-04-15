@@ -1,6 +1,10 @@
 import "./App.css";
 import { useState } from "react";
 
+export function replaceCamelCase(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, " $1");
+}
+
 function App() {
   const [btnColor, setColor] = useState("red");
   const [disabled, setDisable] = useState(false);

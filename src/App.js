@@ -16,17 +16,17 @@ function App() {
   return (
     <div className="App">
       <button
-        style={{ backgroundColor: btnColor }}
+        style={{ backgroundColor: disabled ? "grey" : btnColor }}
         onClick={setNewColor}
         className="btn"
         disabled={disabled}
       >
         Change to blue
       </button>
-
+      <label htmlFor="checkbox">disabled button</label>
       <input
         type="checkbox"
-        name="checkbox"
+        name="disabled button"
         id="checkbox"
         onChange={disableBtn}
       />

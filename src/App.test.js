@@ -28,14 +28,27 @@ it("should toggle button enabled/disabled", function () {
   const btn = screen.getByRole("button", { name: /change to blue/i });
   expect(btn).toBeEnabled();
 
-  const checkBox = screen.getByRole("checkbox");
+  const checkBox = screen.getByRole("checkbox", { name: "disabled button" });
   expect(checkBox).not.toBeChecked();
 
   fireEvent.click(checkBox);
 
   expect(btn).toBeDisabled();
 
+  expect(btn).toHaveStyle({ backgroundColor: "grey" });
+
   fireEvent.click(checkBox);
 
   expect(btn).toBeEnabled();
+});
+
+it("should change btn color to grey when disabled", function () {
+  const btn = screen.getByRole("button", { name: /change to blue/i });
+  const checkbox = screen.getByRole("checkbox", { name: "disabled button" });
+
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: "grey" });
+
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: "red" });
 });

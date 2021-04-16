@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import OrderEntry from "./pages/entry/OrderEntry";
 import { useState } from "react";
 import { OrderDetailsProvider } from "./context/orderDetails";
+import OrderSummary from "./pages/summary/OrderSummary";
+import OrderConfirmation from "./pages/confirmation/OrderConfirmation";
 
 // export function replaceCamelCase(colorName) {
 //   return colorName.replace(/\B([A-Z])\B/g, " $1");
@@ -43,12 +45,26 @@ import { OrderDetailsProvider } from "./context/orderDetails";
 // }
 
 function App() {
+  const [orderPhase, setOrderPhase] = useState("inProgress");
+
+  let Component = OrderEntry;
+
+  switch (orderPhase) {
+    case "inProgress":
+      Component = OrderEntry;
+      break;
+    case "review":
+      Component = OrderSummary;
+      break;
+    case "completed":
+      Component = OrderConfirmation;
+      break;
+    default:
+  }
   return (
-    <Container>
-      <OrderDetailsProvider>
-        <OrderEntry />
-      </OrderDetailsProvider>
-    </Container>
+    <OrderDetailsProvider>
+      <Container>{<Component setOrderPhase={setOrderPhase} />}</Container>
+    </OrderDetailsProvider>
   );
 }
 

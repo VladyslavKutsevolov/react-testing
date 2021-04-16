@@ -4,10 +4,13 @@ import ScoopOptions from "./ScoopOptions";
 import Row from "react-bootstrap/Row";
 import ToppingsOpt from "./ToppingsOpt";
 import AlertBanner from "../AlertBanner";
+import { pricePerItem } from "../../constants";
+import { useOrderDetails } from "../../context/orderDetails";
 
 const Options = ({ optionType }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState();
+  const [orderDetails, updateItemCount] = useOrderDetails();
 
   useEffect(() => {
     axios
@@ -17,11 +20,16 @@ const Options = ({ optionType }) => {
   }, [optionType]);
 
   const ItemComponent = optionType === "scoops" ? ScoopOptions : ToppingsOpt;
+  const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
+
   const ItemOptions = items.map((item) => (
     <ItemComponent
       key={item.name}
       name={item.name}
       imagePath={item.imagePath}
+      updateItemCount={(itemName, newItemCount) =>
+        updateItemCount(itemName, newItemCount, optionType)
+      }
     />
   ));
 
@@ -29,7 +37,16 @@ const Options = ({ optionType }) => {
     return <AlertBanner />;
   }
 
-  return <Row>{ItemOptions}</Row>;
+  return (
+    <>
+      <h2>{title}</h2>
+      <p>{pricePerItem[optionType]} each</p>
+      <p>
+        {title} total: {orderDetails.total[optionType]}
+      </p>
+      <Row>{ItemOptions}</Row>
+    </>
+  );
 };
 
 export default Options;

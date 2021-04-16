@@ -1,6 +1,9 @@
 import "./App.css";
 import SummaryForm from "./pages/summary/SummaryForm";
+import Container from "react-bootstrap/Container";
+import OrderEntry from "./pages/entry/OrderEntry";
 import { useState } from "react";
+import { OrderDetailsProvider } from "./context/orderDetails";
 
 // export function replaceCamelCase(colorName) {
 //   return colorName.replace(/\B([A-Z])\B/g, " $1");
@@ -41,9 +44,11 @@ import { useState } from "react";
 
 function App() {
   return (
-    <div>
-      <SummaryForm />
-    </div>
+    <Container>
+      <OrderDetailsProvider>
+        <OrderEntry />
+      </OrderDetailsProvider>
+    </Container>
   );
 }
 

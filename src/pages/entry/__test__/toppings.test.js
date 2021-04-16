@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../../test-utils/testing-library";
 import Options from "../Options";
 it("should display image for each topping", async () => {
   render(<Options optionType="toppings" />);

@@ -1,4 +1,4 @@
-import { render, screen, wait, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "../../../test-utils/testing-library";
 import OrderEntry from "../OrderEntry";
 
 import { rest } from "msw";

@@ -79,3 +79,29 @@ it("order phase for happy path", async () => {
   await screen.findByRole("spinbutton", { name: "Vanilla" });
   await screen.findByRole("checkbox", { name: "Cherries" });
 });
+
+it("should not display toppings if user does not add them", async () => {
+  render(<App />);
+
+  const vanillaInput = await screen.findByRole("spinbutton", {
+    name: "Vanilla",
+  });
+
+  userEvent.clear(vanillaInput);
+  userEvent.type(vanillaInput, "1");
+
+  const orderBtn = screen.getByRole("button", { name: /order sandae/i });
+
+  userEvent.click(orderBtn);
+
+  const summaryheading = screen.getByRole("heading", { name: "Order Summary" });
+  expect(summaryheading).toBeInTheDocument();
+
+  const scoopHeading = screen.getByRole("heading", { name: "Scoops: $2.00" });
+  expect(scoopHeading).toBeInTheDocument();
+
+  const toppingHeading = screen.queryByRole("heading", {
+    name: "Toppings: $0.00",
+  });
+  expect(toppingHeading).not.toBeInTheDocument();
+});

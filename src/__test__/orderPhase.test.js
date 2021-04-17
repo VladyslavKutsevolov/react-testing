@@ -105,3 +105,20 @@ it("should not display toppings if user does not add them", async () => {
   });
   expect(toppingHeading).not.toBeInTheDocument();
 });
+
+it.only("should disable order button if not scoops added", async () => {
+  render(<App />);
+
+  const orderBtn = screen.getByRole("button", { name: /order sandae/i });
+
+  expect(orderBtn).toBeDisabled();
+
+  const vanillaInput = await screen.findByRole("spinbutton", {
+    name: "Vanilla",
+  });
+
+  userEvent.clear(vanillaInput);
+  userEvent.type(vanillaInput, "1");
+
+  expect(orderBtn).toBeEnabled();
+});

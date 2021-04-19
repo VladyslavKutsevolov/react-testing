@@ -9,15 +9,19 @@ const ScoopOptions = (props) => {
 
   const handleChange = (e) => {
     const currentValue = e.target.value;
-    updateItemCount(name, currentValue);
 
     const currentFloat = parseFloat(e.target.value);
 
-    setIsValid(
+    const valid =
       0 <= currentFloat &&
-        Math.floor(currentFloat) === currentFloat &&
-        currentFloat <= 10
-    );
+      Math.floor(currentFloat) === currentFloat &&
+      currentFloat <= 10;
+
+    setIsValid(valid);
+
+    if (valid) {
+      updateItemCount(name, currentValue);
+    }
   };
 
   return (

@@ -106,7 +106,7 @@ it("should not display toppings if user does not add them", async () => {
   expect(toppingHeading).not.toBeInTheDocument();
 });
 
-it.only("should disable order button if not scoops added", async () => {
+it("should disable order button if not scoops added", async () => {
   render(<App />);
 
   const orderBtn = screen.getByRole("button", { name: /order sandae/i });
